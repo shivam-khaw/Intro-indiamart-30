@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Redirect root domain to Laravel's public/index.php
+    RewriteCond %{REQUEST_URI} ^/$
+    RewriteRule ^ /indiamart-hub/public/index.php [L]
+
+    # Allow direct access to static assets
+    RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|jpeg|gif|ico|svg|webp|woff|woff2|ttf|otf|eot|mp4|webm|ogg|mp3|wav|pdf|txt|xml)$ [NC]
+
+    # Send all other requests to Laravel's front controller
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ /indiamart-hub/public/index.php [L]
+</IfModule>
